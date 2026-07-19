@@ -1,2 +1,2 @@
 # data-quality-platform
-A platform for profiling, validating, and improving dataset quality before machine learning and analytics.
+Data Quality Platform is an AI data optimization platform designed to analyze, clean and optimize datasets before machine learning training.
