@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import pandas as pd
+from core.validators.status_calculator import calculate_status
 
 
 @dataclass
@@ -20,7 +21,7 @@ class NullChecker:
         for column in df.columns:
             null_count = int(df[column].isnull().sum())
             percentage = (null_count / total_rows) * 100 if total_rows > 0 else 0.0
-            status = self._get_status(percentage)
+            status = calculate_status(percentage, self.GREEN_THRESHOLD, self.YELLOW_THRESHOLD)
 
             results[column] = ColumnNullResult(
                 count=null_count,
@@ -29,10 +30,3 @@ class NullChecker:
             )
 
         return results
-
-    def _get_status(self, percentage: float) -> str:
-        if percentage <= self.GREEN_THRESHOLD:
-            return "green"
-        elif percentage <= self.YELLOW_THRESHOLD:
-            return "yellow"
-        return "red"
