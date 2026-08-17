@@ -28,3 +28,9 @@ class DatasetValidatorPort(Protocol):
     name: str
 
     def check(self, df: pd.DataFrame) -> DatasetCheckResult: ...
+
+
+@dataclass
+class AnalysisReport:
+    column_checks: dict[str, dict[str, ColumnCheckResult]]
+    dataset_checks: dict[str, DatasetCheckResult]
