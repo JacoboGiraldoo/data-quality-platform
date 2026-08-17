@@ -22,7 +22,7 @@ def test_mostly_numeric_with_text_inconsistency():
     checker = TypeChecker()
     result = checker.check(df)
 
-    assert result["edad"].expected_type == "numeric"
+    assert result["edad"].metadata["expected_type"] == "numeric"
     assert result["edad"].count == 1
     assert result["edad"].status == "red"  # 1/5 = 20%... verifica este número
 
@@ -35,7 +35,7 @@ def test_mostly_text_with_numeric_inconsistency():
     checker = TypeChecker()
     result = checker.check(df)
 
-    assert result["nombre"].expected_type == "text"
+    assert result["nombre"].metadata["expected_type"] == "text"
     assert result["nombre"].count == 1
 
 

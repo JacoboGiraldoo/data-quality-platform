@@ -1,22 +1,17 @@
-from dataclasses import dataclass
+from core.ports.validator_port import ColumnCheckResult
 import pandas as pd
 from core.validators.status_calculator import calculate_status
 
 
-@dataclass
-class ColumnTypeResult:
-    expected_type: str  # "numeric" o "text"
-    count: int
-    percentage: float
-    status: str
 
 
 class TypeChecker:
+    name = 'types'
     GREEN_THRESHOLD = 5.0
     YELLOW_THRESHOLD = 10.0
     MAJORITY_THRESHOLD = 0.5
 
-    def check(self, df: pd.DataFrame) -> dict[str, ColumnTypeResult]:
+    def check(self, df: pd.DataFrame) -> dict[str, ColumnCheckResult]:
         results = {}
         total_rows = len(df)
 
@@ -42,8 +37,8 @@ class TypeChecker:
             percentage = (inconsistent_count / total_rows) * 100 if total_rows > 0 else 0.0
             status = calculate_status(percentage, self.GREEN_THRESHOLD, self.YELLOW_THRESHOLD)
 
-            results[column] = ColumnTypeResult(
-                expected_type=expected_type,
+            results[column] = ColumnCheckResult(
+                metadata={"expected_type": expected_type},
                 count=int(inconsistent_count),
                 percentage=round(percentage, 2),
                 status=status

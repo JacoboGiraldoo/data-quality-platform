@@ -1,21 +1,15 @@
-from dataclasses import dataclass
 import pandas as pd
 from core.validators.status_calculator import calculate_status
-
-
-@dataclass
-class ColumnOutlierResult:
-    count: int
-    percentage: float
-    status: str  # "green", "yellow", "red"
+from core.ports.validator_port import ColumnCheckResult
 
 
 class OutlierChecker:
+    name = "outliers"
     GREEN_THRESHOLD = 5.0
     YELLOW_THRESHOLD = 10.0
     IQR_MULTIPLIER = 1.5
 
-    def check(self, df: pd.DataFrame) -> dict[str, ColumnOutlierResult]:
+    def check(self, df: pd.DataFrame) -> dict[str, ColumnCheckResult]:
         results = {}
         total_rows = len(df)
 
@@ -35,7 +29,7 @@ class OutlierChecker:
             percentage = (outlier_count / total_rows) * 100 if total_rows > 0 else 0.0
             status = calculate_status(percentage, self.GREEN_THRESHOLD, self.YELLOW_THRESHOLD)
 
-            results[column] = ColumnOutlierResult(
+            results[column] = ColumnCheckResult(
                 count=int(outlier_count),
                 percentage=round(percentage, 2),
                 status=status

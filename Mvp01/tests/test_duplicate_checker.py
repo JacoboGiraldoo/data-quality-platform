@@ -13,7 +13,7 @@ def test_no_duplicates():
     checker = DuplicateChecker()
     result = checker.check(df)
 
-    assert result.total_duplicates == 0
+    assert result.count == 0
     assert result.percentage == 0
     assert result.status == "green"
 
@@ -27,7 +27,7 @@ def test_all_duplicates():
     checker = DuplicateChecker()
     result = checker.check(df)
 
-    assert result.total_duplicates == 3
+    assert result.count == 3
     assert result.percentage == 75.0
     assert result.status == "red"
 
@@ -42,7 +42,7 @@ def test_mixed_duplicates():
     result = checker.check(df)
 
     # 10 filas totales, 1 duplicado ("Ana", 25 se repite una vez) → 10%
-    assert result.total_duplicates == 1
+    assert result.count == 1
     assert result.percentage == 10.0
     assert result.status == "yellow"
 
@@ -56,6 +56,6 @@ def test_empty_dataframe():
     checker = DuplicateChecker()
     result = checker.check(df)
 
-    assert result.total_duplicates == 0
+    assert result.count == 0
     assert result.percentage == 0
     assert result.status == "green"
