@@ -29,8 +29,13 @@ class DatasetValidatorPort(Protocol):
 
     def check(self, df: pd.DataFrame) -> DatasetCheckResult: ...
 
+class AnalyzerPort(Protocol):
+    name: str
+
+    def analyze(self, df: pd.DataFrame) -> dict[str, Any]: ...
 
 @dataclass
 class AnalysisReport:
     column_checks: dict[str, dict[str, ColumnCheckResult]]
     dataset_checks: dict[str, DatasetCheckResult]
+    analyses: dict[str, dict[str, Any]]

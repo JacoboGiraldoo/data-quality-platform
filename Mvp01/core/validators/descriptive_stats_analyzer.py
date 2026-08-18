@@ -19,7 +19,7 @@ class CategoricalColumnStats:
 
 
 class DescriptiveStatsAnalyzer:
-
+    name = "descriptive_stats"
     def analyze(self, df: pd.DataFrame) -> dict[str, NumericColumnStats | CategoricalColumnStats]:
         results = {}
 
