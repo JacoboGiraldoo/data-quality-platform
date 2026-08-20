@@ -36,7 +36,7 @@ The goal is not only to detect problems inside datasets, but also to provide ins
 
 
 
-## Features
+## Planned Features
 
 - Dataset profiling
 - Missing value detection
@@ -56,3 +56,31 @@ This project is inspired by a university research study that evaluated how data 
 The software is not an implementation of the research pipeline.
 
 Instead, it translates part of those findings into a practical tool for machine learning practitioners.
+
+
+
+## Project Status
+
+This project is under active development. it is being built in incremental stages.
+
+### MVP01 - in progress
+
+Focus: Dataset diagnosis.
+
+- [x] Missing value detection
+- [x] Duplicate detection
+- [x] Outlier detection (IQR)
+- [x] Type consistency validation
+- [x] Descriptive statistics
+- [ ] REST API
+- [ ] Report persistence and shareable links
+- [ ] PDF export
+
+
+
+### Planned for future versions 
+
+- Data quality score 
+- Cleaning recommendations
+- impact stimation based on research findings
+- Dataset cleaning and export 
