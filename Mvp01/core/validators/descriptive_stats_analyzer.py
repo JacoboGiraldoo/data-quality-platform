@@ -33,11 +33,11 @@ class DescriptiveStatsAnalyzer:
 
     def _analyze_numeric(self, series: pd.Series) -> NumericColumnStats:
         return NumericColumnStats(
-            mean= series.mean(),
-            median=series.median(),
-            std_dev=series.std(),
-            min_value=series.min(),
-            max_value=series.max()
+            mean= float(series.mean()),
+            median= float(series.median()),
+            std_dev= float(series.std()),
+            min_value= float(series.min()),
+            max_value= float(series.max())
         )
 
     def _analyze_categorical(self, series: pd.Series) -> CategoricalColumnStats:
@@ -46,7 +46,7 @@ class DescriptiveStatsAnalyzer:
         value_counts = series.value_counts()
 
         return CategoricalColumnStats(
-            unique_count=series.nunique(),
-            most_frequent_value=value_counts.index[0],
-            most_frequent_count=value_counts.iloc[0]
+            unique_count= int(series.nunique()),
+            most_frequent_value= str(value_counts.index[0]),
+            most_frequent_count= int(value_counts.iloc[0])
         )
