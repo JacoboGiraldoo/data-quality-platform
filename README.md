@@ -5,6 +5,31 @@ A platform that analyzes data quality, identifies potential issues, and provides
 Inspired by real academic research on the relationship between data quality, computational resources, and machine learning performance.
 
 
+## Project Status
+
+This project is under active development. It is being built in incremental stages.
+
+### MVP01 - In progress
+
+Focus: Dataset diagnosis.
+
+- [x] Missing value detection
+- [x] Duplicate detection
+- [x] Outlier detection (IQR)
+- [x] Type consistency validation
+- [x] Descriptive statistics
+- [ ] REST API
+- [ ] Report persistence and shareable links
+- [ ] PDF export
+
+
+
+### Planned for future versions 
+
+- Data quality score 
+- Cleaning recommendations
+- Impact estimation based on research findings
+- Dataset cleaning and export 
 
 ## Why this project:
 
@@ -36,17 +61,6 @@ The goal is not only to detect problems inside datasets, but also to provide ins
 
 
 
-## Planned Features
-
-- Dataset profiling
-- Missing value detection
-- Duplicate detection
-- Outlier detection
-- Data quality score
-- Cleaning recommendations
-- Estimated impact based on research
-- Exportable reports
-
 
 
 ## Academic Background
@@ -58,29 +72,3 @@ The software is not an implementation of the research pipeline.
 Instead, it translates part of those findings into a practical tool for machine learning practitioners.
 
 
-
-## Project Status
-
-This project is under active development. it is being built in incremental stages.
-
-### MVP01 - in progress
-
-Focus: Dataset diagnosis.
-
-- [x] Missing value detection
-- [x] Duplicate detection
-- [x] Outlier detection (IQR)
-- [x] Type consistency validation
-- [x] Descriptive statistics
-- [ ] REST API
-- [ ] Report persistence and shareable links
-- [ ] PDF export
-
-
-
-### Planned for future versions 
-
-- Data quality score 
-- Cleaning recommendations
-- impact stimation based on research findings
-- Dataset cleaning and export 
