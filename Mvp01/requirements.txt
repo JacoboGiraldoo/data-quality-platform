@@ -7,3 +7,6 @@ Pygments==2.20.0
 pytest==9.1.1
 python-dateutil==2.9.0.post0
 six==1.17.0
+fastapi==0.141.1
+uvicorn==0.52.3
+python-multipart==0.0.32
