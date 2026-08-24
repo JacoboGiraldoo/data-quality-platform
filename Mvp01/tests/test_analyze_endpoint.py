@@ -69,6 +69,7 @@ def test_valid_csv_returns_200_with_expected_shape():
     # We don't compare the full JSON (that would be fragile against
     # any change to the test CSV); we only confirm it has the shape
     # the orchestrator promises to return.
-    assert "column_checks" in body
-    assert "dataset_checks" in body
-    assert "analyses" in body
+    assert "column_checks" in body["report"]
+    assert "dataset_checks" in body["report"]
+    assert "analyses" in body["report"]
+    assert "recommendations" in body

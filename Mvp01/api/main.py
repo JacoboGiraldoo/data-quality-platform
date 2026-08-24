@@ -9,6 +9,7 @@ from core.validators.outlier_checker import OutlierChecker
 from core.validators.type_checker import TypeChecker
 from core.validators.duplicate_checker import DuplicateChecker
 from core.validators.descriptive_stats_analyzer import DescriptiveStatsAnalyzer
+from core.recommendations.recommendation_engine import RecommendationEngine
 
 app = FastAPI(title="Data Quality Platform")
 
@@ -68,5 +69,12 @@ async def analyze(file: UploadFile = File(...)):
         dataset_validators=[DuplicateChecker()],
         analyzers=[DescriptiveStatsAnalyzer()],
     )
+    report = orchestrator.run(df)
 
-    return orchestrator.run(df)
+    recommendation_engine = RecommendationEngine()
+    recommendations = recommendation_engine.generate(report)
+
+    return {
+        "report": report,
+        "recommendations": recommendations,
+    }
