@@ -19,6 +19,7 @@ TEMPLATES: dict[tuple[str, str], Callable[[float], str]] = {
     ("outliers", "red"): lambda pct: f"{pct}% of values are extreme outliers. Consider investigating the IQR-flagged rows.",
     ("outliers", "yellow"): lambda pct: f"{pct}% of values are flagged as outliers. Worth a quick visual check before trusting the distribution.",
     ("types", "red"): lambda pct: f"{pct}% of values don't match the expected type. Validate the source data or adjust the schema.",
+    ("types", "yellow"): lambda pct: f"{pct}% of values don't match the expected type. Worth a closer look before trusting this column.",
     ("duplicates", "red"): lambda pct: f"{pct}% of rows are duplicates. Consider deduplicating before analysis.",
     ("duplicates", "yellow"): lambda pct: f"{pct}% of rows are duplicates. Review whether they're intentional.",
 }
