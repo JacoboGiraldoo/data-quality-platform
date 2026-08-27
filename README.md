@@ -20,7 +20,7 @@ Focus: Dataset diagnosis.
 - [x] Descriptive statistics
 - [x] REST API
 - [ ] Report persistence and shareable links
-- [ ] PDF export
+- [x] PDF export
 
 
 
