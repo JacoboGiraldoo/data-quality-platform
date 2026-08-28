@@ -19,7 +19,6 @@ Focus: Dataset diagnosis.
 - [x] Type consistency validation
 - [x] Descriptive statistics
 - [x] REST API
-- [ ] Report persistence and shareable links
 - [x] PDF export
 
 
