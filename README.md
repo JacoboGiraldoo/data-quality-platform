@@ -18,7 +18,7 @@ Focus: Dataset diagnosis.
 - [x] Outlier detection (IQR)
 - [x] Type consistency validation
 - [x] Descriptive statistics
-- [x] REST API
+- [x] REST API  
 - [x] PDF export
 
 

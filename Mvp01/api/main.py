@@ -14,6 +14,9 @@ from core.validators.duplicate_checker import DuplicateChecker
 from core.validators.descriptive_stats_analyzer import DescriptiveStatsAnalyzer
 from core.recommendations.recommendation_engine import RecommendationEngine
 
+
+
+
 app = FastAPI(title="Data Quality Platform")
 
 MAX_FILE_SIZE_MB = 10
@@ -23,6 +26,16 @@ MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 ##/Analyze 
 @app.post("/analyze")
