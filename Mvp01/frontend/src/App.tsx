@@ -112,74 +112,73 @@ function App() {
   }
 
   return (
-  <div className="container">
-    <h1>Data Quality Platform</h1>
-    <p className="subtitle">Sube un CSV y recibe un reporte de calidad con recomendaciones accionables.</p>
+    <div className="container">
+      <h1>Data Quality Platform</h1>
+      <p className="subtitle">Sube un CSV y recibe un reporte de calidad con recomendaciones accionables.</p>
 
-    <div className="ticket">
-      {(status === "idle" || status === "selected") && (
-        <div className="upload-box">
-          <input
-            type="file"
-            accept=".csv"
-            onChange={handleFileChange}
-            disabled={status === "loading"}
-          />
-          <button
-            className="btn-primary"
-            onClick={handleAnalyze}
-            disabled={status !== "selected"}
-          >
-            Analizar
-          </button>
-        </div>
-      )}
-
-      {status === "loading" && (
-        <p className="loading-message">Analizando tu dataset... (puede tardar hasta un minuto si el servidor estaba dormido)</p>
-      )}
-
-      {status === "error" && (
-        <div>
-          <p className="error">{errorMessage}</p>
-          <input type="file" accept=".csv" onChange={handleFileChange} />
-        </div>
-      )}
-
-      {status === "success" && report && (
-        <div>
-          <h2>Resultado del análisis</h2>
-
-          {report.recommendations.length === 0 ? (
-            <p className="no-issues">No se encontraron problemas en tu dataset.</p>
-          ) : (
-            <ul className="recommendations-list">
-              {report.recommendations.map((rec: any, index: number) => (
-                <li key={index} className="recommendation-item">
-                  <span
-                    className="severity-dot"
-                    style={{ backgroundColor: SEVERITY_COLORS[rec.severity] }}
-                  />
-                  <span>
-                    {rec.column && <span className="column-tag">{rec.column}</span>} {rec.message}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className="actions">
-            <button className="btn-primary" onClick={handleDownloadPdf} disabled={pdfStatus === "downloading"}>
-              {pdfStatus === "downloading" ? "Generando PDF..." : "Descargar PDF"}
+      <div className="ticket">
+        {(status === "idle" || status === "selected") && (
+          <div className="upload-box">
+            <input
+              type="file"
+              accept=".csv"
+              onChange={handleFileChange}
+            />
+            <button
+              className="btn-primary"
+              onClick={handleAnalyze}
+              disabled={status !== "selected"}
+            >
+              Analizar
             </button>
-            <button className="btn-secondary" onClick={handleReset}>Analizar otro archivo</button>
           </div>
-          {pdfStatus === "error" && <p className="error">{pdfErrorMessage}</p>}
-        </div>
-      )}
+        )}
+
+        {status === "loading" && (
+          <p className="loading-message">Analizando tu dataset... (puede tardar hasta un minuto si el servidor estaba dormido)</p>
+        )}
+
+        {status === "error" && (
+          <div>
+            <p className="error">{errorMessage}</p>
+            <input type="file" accept=".csv" onChange={handleFileChange} />
+          </div>
+        )}
+
+        {status === "success" && report && (
+          <div>
+            <h2>Resultado del análisis</h2>
+
+            {report.recommendations.length === 0 ? (
+              <p className="no-issues">No se encontraron problemas en tu dataset.</p>
+            ) : (
+              <ul className="recommendations-list">
+                {report.recommendations.map((rec: any, index: number) => (
+                  <li key={index} className="recommendation-item">
+                    <span
+                      className="severity-dot"
+                      style={{ backgroundColor: SEVERITY_COLORS[rec.severity] }}
+                    />
+                    <span>
+                      {rec.column && <span className="column-tag">{rec.column}</span>} {rec.message}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <div className="actions">
+              <button className="btn-primary" onClick={handleDownloadPdf} disabled={pdfStatus === "downloading"}>
+                {pdfStatus === "downloading" ? "Generando PDF..." : "Descargar PDF"}
+              </button>
+              <button className="btn-secondary" onClick={handleReset}>Analizar otro archivo</button>
+            </div>
+            {pdfStatus === "error" && <p className="error">{pdfErrorMessage}</p>}
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-)
+  )
 }
 
 export default App
